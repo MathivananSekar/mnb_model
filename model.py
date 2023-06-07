@@ -1,5 +1,3 @@
-import nltk
-nltk.download('wordnet')
 import pandas as pd
 import numpy as np
 from nltk.stem import PorterStemmer, WordNetLemmatizer
@@ -53,17 +51,21 @@ class MultinomialNaiveBayes:
 
         return preds
 
-# Example usage
-data = pd.read_csv('your_dataset.csv')  # Replace 'your_dataset.csv' with the path to your dataset file
 
+# Read the dataset
+data = pd.read_csv('dataset.csv')
+
+# Split the dataset into input (actions) and output (products)
 X = data['Action'].values
 y = data['Product'].values
 
+# Create and train the model
 model = MultinomialNaiveBayes()
 model.fit(X, y)
 
+# Example prediction
 test_X = np.array([
-    "Another user action"
+    "I want to go fishing"
 ])
 
 predictions = model.predict(test_X)
